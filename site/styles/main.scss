@@ -7,9 +7,12 @@ $RussoOne: russoone;
 
 @import '../styles/header.scss';
 
+
 html,
 body {
     background: #000;
+    scroll-behavior: smooth;
+    overflow-x: hidden;
 }
 
 * {
