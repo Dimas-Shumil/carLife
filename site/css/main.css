@@ -1,3 +1,39 @@
+@charset "UTF-8";
+/* =========================================================
+   TOKENS / DESIGN SYSTEM
+   Базовые переменные проекта
+   ========================================================= */
+/* Временная совместимость со старым кодом */
+/* Совместимость со старыми именами */
+/* =========================================================
+   FONTS
+   Локальное подключение шрифтов
+   ========================================================= */
+@font-face {
+  font-family: "Inter";
+  src: url("../fonts/Inter_18pt-Medium.ttf") format("truetype");
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Oswald";
+  src: url("../fonts/Oswald-Medium.ttf") format("truetype");
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "RussoOne";
+  src: url("../fonts/RussoOne-Regular.ttf") format("truetype");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+/* =========================================================
+   IMPORTS
+   Импорт отдельных файлов
+   ========================================================= */
 html,
 body {
   background: #000;
@@ -201,19 +237,82 @@ body {
   font-family: russoone;
   src: url(../fonts/RussoOne-Regular.ttf);
 }
-html,
-body {
-  background: #000;
+/* =========================================================
+   GLOBAL RESET / FOUNDATION
+   Базовый слой проекта
+   ========================================================= */
+html {
   scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  background: #000000;
+  color: rgba(255, 255, 255, 0.92);
+  font-family: "Inter", sans-serif;
   overflow-x: hidden;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  outline: 5px solid red;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
 }
 
 * {
-  box-sizing: border-box;
   margin: 0;
   padding: 0;
 }
 
+img {
+  display: block;
+  max-width: 100%;
+}
+
+button,
+input,
+textarea,
+select {
+  font: inherit;
+}
+
+button {
+  border: 0;
+  background: transparent;
+  cursor: pointer;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+ul,
+ol {
+  list-style: none;
+}
+
+a:focus-visible,
+button:focus-visible,
+input:focus-visible,
+textarea:focus-visible,
+select:focus-visible {
+  outline: 2px solid rgba(255, 140, 70, 0.8);
+  outline-offset: 3px;
+}
+
+/* =========================================================
+   COMMON UI HELPERS
+   Общие повторяющиеся стили
+   ========================================================= */
+/* =========================================================
+   HERO
+   Первый экран сайта
+   ========================================================= */
 .hero {
   position: relative;
   width: 100%;
@@ -227,14 +326,14 @@ body {
 .hero__overlay {
   position: absolute;
   inset: 0;
-  background: rgba(0, 0, 0, 0.58);
+  background: linear-gradient(180deg, rgba(0, 0, 0, 0.42) 0%, rgba(0, 0, 0, 0.52) 40%, rgba(0, 0, 0, 0.72) 100%);
   z-index: 1;
 }
 .hero-container {
   position: relative;
   z-index: 2;
   width: 100%;
-  max-width: 1200px;
+  max-width: 1240px;
   padding: 0 20px;
   display: flex;
   flex-direction: column;
@@ -242,34 +341,69 @@ body {
   text-align: center;
 }
 .hero__subtitle {
-  font-family: russoone;
+  margin-bottom: 12px;
+  font-family: "RussoOne", sans-serif;
   font-size: 18px;
-  letter-spacing: 4px;
+  letter-spacing: 0.18em;
   color: #d95a0b;
   text-transform: uppercase;
 }
 .hero__title {
-  font-family: russoone;
-  font-size: 88px;
-  line-height: 1.02;
-  color: rgba(255, 255, 255, 0.9098039216);
+  margin: 0 0 18px;
+  font-family: "RussoOne", sans-serif;
+  font-size: clamp(42px, 7vw, 96px);
+  line-height: 0.96;
+  color: rgba(255, 255, 255, 0.92);
   text-align: center;
-  margin-bottom: 18px;
   text-wrap: balance;
 }
 .hero__title span {
   color: #d95a0b;
-  text-shadow: 0 0 20px rgba(217, 90, 11, 0.45);
+  text-shadow: 0 0 20px rgba(217, 90, 11, 0.35);
 }
 .hero__description {
-  font-family: inter;
-  font-size: 20px;
+  max-width: 760px;
+  margin: 0 0 22px;
+  font-family: "Inter", sans-serif;
+  font-size: clamp(16px, 2vw, 22px);
   text-align: center;
   line-height: 1.6;
-  color: #c7cad4;
-  max-width: 760px;
-  margin-bottom: 28px;
+  color: #d3d7df;
   text-wrap: balance;
+}
+.hero__features {
+  width: 100%;
+  max-width: 760px;
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin: 0 0 28px;
+}
+.hero__feature {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 42px;
+  padding: 10px 16px;
+  border-radius: 12px;
+  background: rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  color: #fff;
+  font-family: "Inter", sans-serif;
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 1;
+  white-space: nowrap;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.18);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+}
+.hero__feature::before {
+  content: "✓";
+  margin-right: 8px;
+  color: #f47a1f;
+  font-weight: 700;
 }
 .hero__buttons {
   display: flex;
@@ -278,44 +412,43 @@ body {
   flex-wrap: wrap;
 }
 .hero .btn {
-  position: relative;
   display: inline-flex;
   align-items: center;
   justify-content: center;
   min-height: 58px;
   padding: 18px 30px;
-  font-family: russoone;
+  border-radius: 12px;
+  font-family: "RussoOne", sans-serif;
   font-size: 15px;
-  letter-spacing: 0.5px;
-  border-radius: 10px;
-  text-decoration: none;
-  transition: all 0.3s ease;
+  letter-spacing: 0.03em;
   text-align: center;
+  transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease, background 0.3s ease, color 0.3s ease;
 }
 .hero .btn--primary {
   background: linear-gradient(135deg, #d95a0b, #f47a1f);
-  color: rgba(255, 255, 255, 0.9098039216);
-  box-shadow: 0 0 24px rgba(217, 90, 11, 0.34);
+  color: rgba(255, 255, 255, 0.92);
+  box-shadow: 0 0 24px rgba(217, 90, 11, 0.28);
 }
 .hero .btn--primary:hover {
   transform: translateY(-2px);
-  box-shadow: 0 0 34px rgba(217, 90, 11, 0.48);
+  box-shadow: 0 0 34px rgba(217, 90, 11, 0.4);
 }
 .hero .btn--outline {
-  border: 2px solid rgba(255, 255, 255, 0.28);
-  color: rgba(255, 255, 255, 0.9098039216);
+  border: 2px solid rgba(255, 255, 255, 0.24);
+  color: rgba(255, 255, 255, 0.92);
   background: rgba(255, 255, 255, 0.04);
   backdrop-filter: blur(6px);
 }
 .hero .btn--outline:hover {
+  transform: translateY(-2px);
   border-color: #d95a0b;
   color: #f47a1f;
   background: rgba(217, 90, 11, 0.08);
 }
 
+/* Hero: tablet */
 @media (max-width: 1024px) {
   .hero {
-    min-height: 100vh;
     padding: 120px 0 56px;
     align-items: flex-end;
     justify-content: flex-start;
@@ -332,22 +465,31 @@ body {
   }
   .hero__subtitle {
     font-size: 14px;
-    letter-spacing: 2.4px;
+    letter-spacing: 0.14em;
     margin-bottom: 10px;
   }
   .hero__title {
-    font-size: 52px;
-    line-height: 1.02;
+    font-size: 56px;
     text-align: left;
     margin-bottom: 14px;
   }
   .hero__description {
-    font-size: 16px;
+    font-size: 17px;
     line-height: 1.55;
     text-align: left;
     max-width: 560px;
-    margin-bottom: 22px;
-    color: #d6d7dd;
+    margin-bottom: 20px;
+  }
+  .hero__features {
+    justify-content: flex-start;
+    max-width: 560px;
+    gap: 10px;
+    margin: 0 0 22px;
+  }
+  .hero__feature {
+    font-size: 13px;
+    min-height: 38px;
+    padding: 8px 12px;
   }
   .hero__buttons {
     justify-content: flex-start;
@@ -359,13 +501,13 @@ body {
     font-size: 14px;
   }
 }
+/* Hero: mobile */
 @media (max-width: 768px) {
   .hero {
     min-height: 100svh;
     padding: 96px 0 40px;
     align-items: flex-end;
     justify-content: flex-start;
-    background-size: cover;
     background-position: 66% center;
   }
   .hero__overlay {
@@ -379,71 +521,80 @@ body {
   }
   .hero__subtitle {
     font-size: 12px;
-    letter-spacing: 2px;
+    letter-spacing: 0.12em;
     margin-bottom: 8px;
   }
   .hero__title {
-    font-size: 34px;
-    line-height: 1.04;
+    font-size: 36px;
+    line-height: 1.02;
     text-align: left;
     margin-bottom: 12px;
-    max-width: 320px;
+    max-width: 340px;
   }
   .hero__description {
     font-size: 14px;
     line-height: 1.5;
     text-align: left;
     max-width: 320px;
-    margin-bottom: 18px;
-    color: #d8d8de;
+    margin-bottom: 16px;
   }
-  .hero__description br {
-    display: none;
+  .hero__features {
+    max-width: 320px;
+    gap: 8px;
+    margin: 0 0 18px;
+    justify-content: flex-start;
+  }
+  .hero__feature {
+    font-size: 12px;
+    min-height: 36px;
+    padding: 8px 10px;
+    white-space: normal;
+    text-align: center;
   }
   .hero__buttons {
     width: 100%;
+    max-width: 320px;
     flex-direction: column;
     align-items: stretch;
     gap: 10px;
-    max-width: 320px;
   }
   .hero .btn {
     width: 100%;
     min-height: 50px;
     padding: 14px 18px;
-    justify-content: center;
     font-size: 13px;
-    border-radius: 8px;
+    border-radius: 10px;
   }
 }
+/* Hero: small mobile */
 @media (max-width: 480px) {
   .hero {
-    min-height: 100svh;
     padding: 88px 0 28px;
     background-position: 72% center;
-  }
-  .hero__overlay {
-    background: linear-gradient(to bottom, rgba(0, 0, 0, 0.04) 0%, rgba(0, 0, 0, 0.08) 24%, rgba(0, 0, 0, 0.22) 44%, rgba(0, 0, 0, 0.56) 66%, rgba(0, 0, 0, 0.88) 84%, rgb(0, 0, 0) 100%);
   }
   .hero-container {
     padding: 0 16px;
   }
   .hero__subtitle {
     font-size: 11px;
-    letter-spacing: 1.6px;
     margin-bottom: 6px;
   }
   .hero__title {
-    font-size: 28px;
-    line-height: 1.06;
-    margin-bottom: 10px;
+    font-size: 30px;
     max-width: 280px;
+    margin-bottom: 10px;
   }
   .hero__description {
     font-size: 13px;
     line-height: 1.45;
     max-width: 280px;
-    margin-bottom: 16px;
+    margin-bottom: 14px;
+  }
+  .hero__features {
+    max-width: 280px;
+  }
+  .hero__feature {
+    width: 100%;
   }
   .hero__buttons {
     max-width: 280px;
@@ -454,6 +605,10 @@ body {
     font-size: 12px;
   }
 }
+/* =========================================================
+   ABOUT
+   Блок о сервисе
+   ========================================================= */
 .about {
   position: relative;
   padding: 130px 0 110px;
@@ -493,7 +648,6 @@ body {
   z-index: 3;
   max-width: 760px;
   padding-top: 18px;
-  transform: translateY(-18px);
 }
 .about__eyebrow {
   display: inline-flex;
@@ -504,7 +658,7 @@ body {
   line-height: 1;
   letter-spacing: 0.22em;
   text-transform: uppercase;
-  font-family: inter;
+  font-family: "Inter", sans-serif;
   font-weight: 600;
   color: rgba(255, 255, 255, 0.5);
 }
@@ -521,8 +675,8 @@ body {
   line-height: 0.92;
   letter-spacing: 0.01em;
   text-transform: uppercase;
-  font-family: russoone;
-  color: rgba(255, 255, 255, 0.9098039216);
+  font-family: "RussoOne", sans-serif;
+  color: rgba(255, 255, 255, 0.92);
   text-wrap: balance;
 }
 .about__title span {
@@ -534,7 +688,7 @@ body {
   margin: 0;
   font-size: 18px;
   line-height: 1.85;
-  font-family: inter;
+  font-family: "Inter", sans-serif;
   color: rgba(255, 255, 255, 0.78);
 }
 .about__text--secondary {
@@ -580,8 +734,8 @@ body {
   line-height: 0.95;
   letter-spacing: 0.01em;
   text-transform: uppercase;
-  font-family: russoone;
-  color: rgba(255, 255, 255, 0.9098039216);
+  font-family: "RussoOne", sans-serif;
+  color: rgba(255, 255, 255, 0.92);
 }
 .about__stat-label {
   position: relative;
@@ -590,7 +744,7 @@ body {
   max-width: 180px;
   font-size: 14px;
   line-height: 1.55;
-  font-family: inter;
+  font-family: "Inter", sans-serif;
   color: rgba(255, 255, 255, 0.56);
 }
 .about__visual {
@@ -599,7 +753,6 @@ body {
   display: flex;
   align-items: flex-start;
   justify-content: flex-end;
-  transform: translateX(74px);
 }
 .about__image-wrap {
   position: relative;
@@ -633,7 +786,6 @@ body {
 .about__image {
   width: 100%;
   height: 100%;
-  display: block;
   object-fit: cover;
   transform: scale(1.02);
   filter: saturate(0.95) contrast(1.02) brightness(0.82);
@@ -647,11 +799,11 @@ body {
   max-width: 330px;
   padding: 24px 24px 22px;
   border-radius: 28px;
-  background: linear-gradient(180deg, rgba(255, 255, 255, 0.085), rgba(255, 255, 255, 0.02)), rgba(10, 10, 10, 0.82);
-  border: 1px solid rgba(255, 255, 255, 0.11);
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.045), rgba(255, 255, 255, 0.015)), rgba(10, 10, 10, 0.82);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  box-shadow: 0 30px 70px rgba(0, 0, 0, 0.34), inset 0 1px 0 rgba(255, 255, 255, 0.04);
   backdrop-filter: blur(18px);
   -webkit-backdrop-filter: blur(18px);
-  box-shadow: 0 26px 54px rgba(0, 0, 0, 0.34), inset 0 1px 0 rgba(255, 255, 255, 0.05);
 }
 .about__floating-card::before {
   content: "";
@@ -672,7 +824,7 @@ body {
   line-height: 1;
   letter-spacing: 0.18em;
   text-transform: uppercase;
-  font-family: inter;
+  font-family: "Inter", sans-serif;
   font-weight: 700;
   color: rgba(255, 255, 255, 0.5);
 }
@@ -688,10 +840,11 @@ body {
   margin: 0;
   font-size: 15px;
   line-height: 1.7;
-  font-family: inter;
+  font-family: "Inter", sans-serif;
   color: rgba(255, 255, 255, 0.8);
 }
 
+/* About: desktop narrow */
 @media (max-width: 1400px) {
   .about {
     padding: 138px 0 120px;
@@ -700,7 +853,6 @@ body {
     gap: 24px;
   }
   .about__visual {
-    transform: translateX(34px);
     min-height: 690px;
   }
   .about__image-wrap {
@@ -711,6 +863,7 @@ body {
     bottom: 34px;
   }
 }
+/* About: tablet */
 @media (max-width: 1200px) {
   .about {
     padding: 100px 0 84px;
@@ -721,7 +874,6 @@ body {
   }
   .about__content {
     max-width: 100%;
-    transform: none;
   }
   .about__title {
     max-width: 100%;
@@ -730,7 +882,6 @@ body {
   .about__visual {
     min-height: auto;
     justify-content: center;
-    transform: none;
   }
   .about__image-wrap {
     max-width: 100%;
@@ -742,6 +893,7 @@ body {
     max-width: 320px;
   }
 }
+/* About: mobile */
 @media (max-width: 768px) {
   .about {
     padding: 76px 0 62px;
@@ -802,6 +954,7 @@ body {
     border-radius: 20px;
   }
 }
+/* About: small mobile */
 @media (max-width: 480px) {
   .about {
     padding: 60px 0 50px;
@@ -830,6 +983,10 @@ body {
     line-height: 1.55;
   }
 }
+/* =========================================================
+   CTA
+   Промежуточный призыв к действию
+   ========================================================= */
 .cta {
   width: 100%;
   padding: 100px 24px;
@@ -867,16 +1024,16 @@ body {
   margin: 0;
   font-size: 40px;
   line-height: 1.1;
-  font-family: russoone;
+  font-family: "RussoOne", sans-serif;
   text-transform: uppercase;
-  color: rgba(255, 255, 255, 0.9098039216);
+  color: rgba(255, 255, 255, 0.92);
 }
 .cta__content p {
   margin: 0;
   max-width: 560px;
   font-size: 16px;
   line-height: 1.6;
-  font-family: inter;
+  font-family: "Inter", sans-serif;
   color: rgba(255, 255, 255, 0.7);
 }
 .cta__actions {
@@ -891,30 +1048,30 @@ body {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  font-family: inter;
+  font-family: "Inter", sans-serif;
   font-size: 14px;
   font-weight: 700;
   letter-spacing: 0.03em;
   text-transform: uppercase;
-  text-decoration: none;
-  transition: all 0.3s ease;
+  transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease, background 0.3s ease, filter 0.3s ease;
+}
+.cta__btn:hover {
+  transform: translateY(-2px);
 }
 .cta__btn--max {
   background: #ffffff;
   color: #111;
 }
 .cta__btn--max:hover {
-  transform: translateY(-2px);
   opacity: 0.9;
 }
 .cta__btn--phone {
   background: rgba(255, 255, 255, 0.05);
-  color: rgba(255, 255, 255, 0.9098039216);
+  color: rgba(255, 255, 255, 0.92);
   border: 1px solid rgba(255, 255, 255, 0.1);
 }
 .cta__btn--phone:hover {
   background: rgba(255, 255, 255, 0.08);
-  transform: translateY(-2px);
 }
 
 @media (max-width: 768px) {
@@ -949,6 +1106,10 @@ body {
     font-size: 22px;
   }
 }
+/* =========================================================
+   SERVICES
+   Блок услуг
+   ========================================================= */
 .uslugi {
   position: relative;
   width: 100%;
@@ -1032,8 +1193,8 @@ body {
   line-height: 1.02;
   letter-spacing: 0.01em;
   text-transform: uppercase;
-  font-family: russoone;
-  color: rgba(255, 255, 255, 0.9098039216);
+  font-family: "RussoOne", sans-serif;
+  color: rgba(255, 255, 255, 0.92);
   text-wrap: balance;
 }
 .uslugi__element p {
@@ -1041,7 +1202,7 @@ body {
   margin: 0;
   font-size: 15px;
   line-height: 1.6;
-  font-family: inter;
+  font-family: "Inter", sans-serif;
   color: rgba(255, 255, 255, 0.72);
 }
 .uslugi__eyebrow {
@@ -1052,7 +1213,7 @@ body {
   line-height: 1;
   letter-spacing: 0.14em;
   text-transform: uppercase;
-  font-family: inter;
+  font-family: "Inter", sans-serif;
   font-weight: 600;
   color: rgba(255, 255, 255, 0.48);
 }
@@ -1074,7 +1235,6 @@ body {
 .uslugi__trigger img {
   width: 18px;
   height: 18px;
-  display: block;
   object-fit: contain;
   filter: brightness(0) invert(1);
 }
@@ -1097,6 +1257,98 @@ body {
   background-image: url("../img/uslugi/shod-razval.png");
 }
 
+/* Services: desktop narrow */
+@media (max-width: 1440px) {
+  .uslugi {
+    padding: 110px 20px 84px;
+  }
+  .uslugi-container {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+  .uslugi__element {
+    min-height: 300px;
+  }
+  .uslugi__element h3 {
+    font-size: 27px;
+  }
+}
+/* Services: tablet */
+@media (max-width: 1200px) {
+  .uslugi {
+    padding: 90px 20px 70px;
+  }
+  .uslugi-container {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 18px;
+  }
+  .uslugi__element {
+    min-height: 300px;
+    padding: 24px 22px 22px;
+  }
+  .uslugi__element h3 {
+    font-size: 24px;
+  }
+  .uslugi__element p {
+    font-size: 14px;
+  }
+}
+/* Services: mobile */
+@media (max-width: 768px) {
+  .uslugi {
+    padding: 70px 14px 48px;
+  }
+  .uslugi-container {
+    grid-template-columns: 1fr;
+    gap: 14px;
+  }
+  .uslugi__element {
+    min-height: 260px;
+    padding: 20px 18px 18px;
+    border-radius: 20px;
+  }
+  .uslugi__element > img {
+    width: 46px;
+    height: 46px;
+    padding: 10px;
+    border-radius: 12px;
+  }
+  .uslugi__element h3 {
+    font-size: 20px;
+  }
+  .uslugi__element p {
+    font-size: 14px;
+    line-height: 1.5;
+  }
+  .uslugi__trigger {
+    width: 42px;
+    height: 42px;
+  }
+}
+/* Services: small mobile */
+@media (max-width: 480px) {
+  .uslugi {
+    padding: 56px 12px 40px;
+  }
+  .uslugi__element {
+    min-height: 230px;
+    padding: 18px 16px 16px;
+  }
+  .uslugi__element h3 {
+    font-size: 17px;
+  }
+  .uslugi__element p {
+    font-size: 13px;
+    line-height: 1.45;
+  }
+  .uslugi__eyebrow {
+    font-size: 10px;
+    letter-spacing: 0.12em;
+  }
+}
+/* =========================================================
+   SERVICE MODAL
+   Модальное окно услуги
+   ========================================================= */
 body.modal-open {
   overflow: hidden;
 }
@@ -1148,13 +1400,11 @@ body.modal-open {
   z-index: 3;
   width: 42px;
   height: 42px;
-  border: none;
   border-radius: 50%;
   background: rgba(0, 0, 0, 0.45);
   color: #fff;
   font-size: 28px;
   line-height: 1;
-  cursor: pointer;
   transition: background 0.3s ease, transform 0.3s ease;
 }
 .service-modal__close:hover {
@@ -1171,7 +1421,6 @@ body.modal-open {
 .service-modal__image {
   width: 100%;
   height: 100%;
-  display: block;
   object-fit: cover;
 }
 .service-modal__content {
@@ -1187,7 +1436,7 @@ body.modal-open {
   line-height: 1;
   letter-spacing: 0.14em;
   text-transform: uppercase;
-  font-family: inter;
+  font-family: "Inter", sans-serif;
   font-weight: 600;
   color: rgba(255, 255, 255, 0.46);
 }
@@ -1197,8 +1446,8 @@ body.modal-open {
   line-height: 1.06;
   letter-spacing: 0.01em;
   text-transform: uppercase;
-  font-family: russoone;
-  color: rgba(255, 255, 255, 0.9098039216);
+  font-family: "RussoOne", sans-serif;
+  color: rgba(255, 255, 255, 0.92);
   text-wrap: balance;
 }
 .service-modal__text {
@@ -1206,7 +1455,7 @@ body.modal-open {
   margin: 0;
   font-size: 16px;
   line-height: 1.7;
-  font-family: inter;
+  font-family: "Inter", sans-serif;
   color: rgba(255, 255, 255, 0.72);
 }
 .service-modal__actions {
@@ -1224,8 +1473,7 @@ body.modal-open {
   border-radius: 14px;
   background: #ffffff;
   color: #111111;
-  text-decoration: none;
-  font-family: inter;
+  font-family: "Inter", sans-serif;
   font-size: 14px;
   font-weight: 700;
   letter-spacing: 0.03em;
@@ -1244,7 +1492,6 @@ body.modal-open {
   min-height: 56px;
   padding: 14px 18px;
   border-radius: 14px;
-  text-decoration: none;
   background: rgba(255, 255, 255, 0.04);
   border: 1px solid rgba(255, 255, 255, 0.08);
   transition: background 0.3s ease, border-color 0.3s ease;
@@ -1255,48 +1502,17 @@ body.modal-open {
 }
 .service-modal__phone-label {
   font-size: 12px;
-  font-family: inter;
+  font-family: "Inter", sans-serif;
   color: rgba(255, 255, 255, 0.48);
 }
 .service-modal__phone-number {
   font-size: 20px;
   line-height: 1.1;
-  font-family: russoone;
-  color: rgba(255, 255, 255, 0.9098039216);
+  font-family: "RussoOne", sans-serif;
+  color: rgba(255, 255, 255, 0.92);
 }
 
-@media (max-width: 1440px) {
-  .uslugi {
-    padding: 110px 20px 84px;
-  }
-  .uslugi-container {
-    grid-template-columns: repeat(3, minmax(0, 1fr));
-  }
-  .uslugi__element {
-    min-height: 300px;
-  }
-  .uslugi__element h3 {
-    font-size: 27px;
-  }
-}
 @media (max-width: 1200px) {
-  .uslugi {
-    padding: 90px 20px 70px;
-  }
-  .uslugi-container {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-    gap: 18px;
-  }
-  .uslugi__element {
-    min-height: 300px;
-    padding: 24px 22px 22px;
-  }
-  .uslugi__element h3 {
-    font-size: 24px;
-  }
-  .uslugi__element p {
-    font-size: 14px;
-  }
   .service-modal__image-wrap {
     height: 320px;
   }
@@ -1311,35 +1527,6 @@ body.modal-open {
   }
 }
 @media (max-width: 768px) {
-  .uslugi {
-    padding: 70px 14px 48px;
-  }
-  .uslugi-container {
-    grid-template-columns: 1fr;
-    gap: 14px;
-  }
-  .uslugi__element {
-    min-height: 260px;
-    padding: 20px 18px 18px;
-    border-radius: 20px;
-  }
-  .uslugi__element > img {
-    width: 46px;
-    height: 46px;
-    padding: 10px;
-    border-radius: 12px;
-  }
-  .uslugi__element h3 {
-    font-size: 20px;
-  }
-  .uslugi__element p {
-    font-size: 14px;
-    line-height: 1.5;
-  }
-  .uslugi__trigger {
-    width: 42px;
-    height: 42px;
-  }
   .service-modal__dialog {
     width: calc(100% - 20px);
     max-height: calc(100vh - 20px);
@@ -1372,24 +1559,6 @@ body.modal-open {
   }
 }
 @media (max-width: 480px) {
-  .uslugi {
-    padding: 56px 12px 40px;
-  }
-  .uslugi__element {
-    min-height: 230px;
-    padding: 18px 16px 16px;
-  }
-  .uslugi__element h3 {
-    font-size: 17px;
-  }
-  .uslugi__element p {
-    font-size: 13px;
-    line-height: 1.45;
-  }
-  .uslugi__eyebrow {
-    font-size: 10px;
-    letter-spacing: 0.12em;
-  }
   .service-modal__image-wrap {
     height: 190px;
   }
@@ -1406,6 +1575,10 @@ body.modal-open {
     font-size: 15px;
   }
 }
+/* =========================================================
+   REVIEWS
+   Блок отзывов клиентов
+   ========================================================= */
 .otzyvy {
   width: 100%;
   padding: 96px 24px;
@@ -1415,6 +1588,7 @@ body.modal-open {
   width: 100%;
   max-width: 1720px;
   margin: 0 auto;
+  padding: 0;
   display: flex;
   flex-direction: column;
   gap: 40px;
@@ -1431,8 +1605,8 @@ body.modal-open {
   line-height: 1.1;
   letter-spacing: 0.02em;
   text-transform: uppercase;
-  font-family: russoone;
-  color: rgba(255, 255, 255, 0.9098039216);
+  font-family: "RussoOne", sans-serif;
+  color: rgba(255, 255, 255, 0.92);
 }
 .otzyvy__title h2 span {
   color: rgba(255, 255, 255, 0.55);
@@ -1442,7 +1616,7 @@ body.modal-open {
   margin: 0;
   font-size: 18px;
   line-height: 1.6;
-  font-family: inter;
+  font-family: "Inter", sans-serif;
   color: rgba(255, 255, 255, 0.68);
 }
 .otzyvy-slider {
@@ -1486,10 +1660,10 @@ body.modal-open {
   height: 52px;
   border-radius: 50%;
   background: rgba(255, 255, 255, 0.06);
-  color: rgba(255, 255, 255, 0.9098039216);
+  color: rgba(255, 255, 255, 0.92);
   font-size: 20px;
   font-weight: 700;
-  font-family: russoone;
+  font-family: "RussoOne", sans-serif;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -1505,14 +1679,14 @@ body.modal-open {
   margin: 0;
   font-size: 20px;
   line-height: 1.2;
-  font-family: inter;
+  font-family: "Inter", sans-serif;
   font-weight: 700;
-  color: rgba(255, 255, 255, 0.9098039216);
+  color: rgba(255, 255, 255, 0.92);
 }
 .otzyvy-card__info span {
   font-size: 14px;
   line-height: 1.4;
-  font-family: inter;
+  font-family: "Inter", sans-serif;
   color: rgba(255, 255, 255, 0.55);
 }
 .otzyvy-card__image {
@@ -1544,7 +1718,7 @@ body.modal-open {
   margin: 0;
   font-size: 15px;
   line-height: 1.65;
-  font-family: inter;
+  font-family: "Inter", sans-serif;
   color: rgba(255, 255, 255, 0.72);
   overflow: hidden;
   display: -webkit-box;
@@ -1560,12 +1734,11 @@ body.modal-open {
   padding: 0;
   border: none;
   background: transparent;
-  color: rgba(255, 255, 255, 0.9098039216);
+  color: rgba(255, 255, 255, 0.92);
   font-size: 14px;
   font-weight: 600;
-  font-family: inter;
+  font-family: "Inter", sans-serif;
   line-height: 1.2;
-  cursor: pointer;
   opacity: 0.72;
   transition: opacity 0.3s ease;
   flex-shrink: 0;
@@ -1601,8 +1774,7 @@ body.modal-open {
   min-height: 56px;
   padding: 0 24px;
   border-radius: 14px;
-  text-decoration: none;
-  font-family: inter;
+  font-family: "Inter", sans-serif;
   font-size: 14px;
   font-weight: 700;
   letter-spacing: 0.03em;
@@ -1611,7 +1783,6 @@ body.modal-open {
   transition: transform 0.3s ease, filter 0.3s ease;
   background: linear-gradient(180deg, #ff8a46 0%, #b54608 100%);
   color: #fff;
-  font-family: inter;
   border: 1px solid transparent;
 }
 .otzyvy__bottom-link:hover {
@@ -1624,12 +1795,11 @@ body.modal-open {
   border-radius: 50%;
   border: 1px solid rgba(255, 255, 255, 0.08);
   background: rgba(255, 255, 255, 0.04);
-  color: rgba(255, 255, 255, 0.9098039216);
+  color: rgba(255, 255, 255, 0.92);
   font-size: 22px;
   display: flex;
   align-items: center;
   justify-content: center;
-  cursor: pointer;
   transition: transform 0.3s ease, background 0.3s ease, border-color 0.3s ease, opacity 0.3s ease;
 }
 .otzyvy-button-prev:hover, .otzyvy-button-next:hover {
@@ -1638,6 +1808,7 @@ body.modal-open {
   border-color: rgba(255, 255, 255, 0.14);
 }
 
+/* Reviews: desktop narrow */
 @media (max-width: 1440px) {
   .otzyvy {
     padding: 88px 20px;
@@ -1652,6 +1823,7 @@ body.modal-open {
     font-size: 17px;
   }
 }
+/* Reviews: tablet */
 @media (max-width: 1200px) {
   .otzyvy {
     padding: 80px 20px;
@@ -1678,6 +1850,7 @@ body.modal-open {
     font-size: 14px;
   }
 }
+/* Reviews: medium tablet */
 @media (max-width: 992px) {
   .otzyvy {
     padding: 72px 18px;
@@ -1701,6 +1874,7 @@ body.modal-open {
     justify-content: flex-end;
   }
 }
+/* Reviews: mobile */
 @media (max-width: 768px) {
   .otzyvy {
     padding: 64px 14px;
@@ -1764,6 +1938,7 @@ body.modal-open {
     font-size: 20px;
   }
 }
+/* Reviews: small mobile */
 @media (max-width: 480px) {
   .otzyvy {
     padding: 56px 12px;
@@ -1812,6 +1987,10 @@ body.modal-open {
     font-size: 18px;
   }
 }
+/* =========================================================
+   CONTACT PREMIUM
+   Контакты, карта и форма заявки
+   ========================================================= */
 .contact-premium {
   position: relative;
   padding: 130px 0 110px;
@@ -1874,7 +2053,7 @@ body.modal-open {
   line-height: 1;
   letter-spacing: 0.2em;
   text-transform: uppercase;
-  font-family: inter;
+  font-family: "Inter", sans-serif;
   font-weight: 600;
   color: rgba(255, 255, 255, 0.5);
 }
@@ -1893,8 +2072,8 @@ body.modal-open {
   line-height: 0.94;
   letter-spacing: 0.01em;
   text-transform: uppercase;
-  font-family: russoone;
-  color: rgba(255, 255, 255, 0.9098039216);
+  font-family: "RussoOne", sans-serif;
+  color: rgba(255, 255, 255, 0.92);
 }
 .contact-premium__title span {
   color: rgba(255, 255, 255, 0.72);
@@ -1906,7 +2085,7 @@ body.modal-open {
   margin: 0 0 30px;
   font-size: 17px;
   line-height: 1.8;
-  font-family: inter;
+  font-family: "Inter", sans-serif;
   color: rgba(255, 255, 255, 0.74);
 }
 .contact-premium__details {
@@ -1941,7 +2120,7 @@ body.modal-open {
   margin: 0;
   font-size: 16px;
   line-height: 1.6;
-  font-family: inter;
+  font-family: "Inter", sans-serif;
   color: rgba(255, 255, 255, 0.82);
   text-decoration: none;
 }
@@ -1957,7 +2136,7 @@ body.modal-open {
   line-height: 1;
   letter-spacing: 0.16em;
   text-transform: uppercase;
-  font-family: inter;
+  font-family: "Inter", sans-serif;
   font-weight: 700;
   color: rgba(255, 255, 255, 0.48);
 }
@@ -1976,8 +2155,7 @@ body.modal-open {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  text-decoration: none;
-  font-family: inter;
+  font-family: "Inter", sans-serif;
   font-size: 14px;
   font-weight: 700;
   letter-spacing: 0.04em;
@@ -2027,196 +2205,7 @@ body.modal-open {
   top: 110px;
 }
 
-.premium-form-card {
-  position: relative;
-  overflow: hidden;
-  padding: 34px 30px 30px;
-  border-radius: 30px;
-  background: linear-gradient(180deg, rgba(255, 255, 255, 0.055), rgba(255, 255, 255, 0.015)), #090909;
-  border: 1px solid rgba(255, 255, 255, 0.08);
-  box-shadow: 0 30px 70px rgba(0, 0, 0, 0.34), inset 0 1px 0 rgba(255, 255, 255, 0.04);
-}
-.premium-form-card::before {
-  content: "";
-  position: absolute;
-  inset: 0;
-  pointer-events: none;
-  background: linear-gradient(135deg, rgba(255, 132, 58, 0.11) 0%, transparent 40%, transparent 100%);
-}
-.premium-form-card__eyebrow {
-  position: relative;
-  z-index: 1;
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
-  margin-bottom: 14px;
-  font-size: 11px;
-  line-height: 1;
-  letter-spacing: 0.18em;
-  text-transform: uppercase;
-  font-family: inter;
-  font-weight: 700;
-  color: rgba(255, 255, 255, 0.5);
-}
-.premium-form-card__eyebrow::before {
-  content: "";
-  width: 24px;
-  height: 1px;
-  background: rgba(255, 140, 70, 0.84);
-}
-.premium-form-card__title {
-  position: relative;
-  z-index: 1;
-  margin: 0 0 14px;
-  font-size: 34px;
-  line-height: 0.98;
-  text-transform: uppercase;
-  font-family: russoone;
-  color: rgba(255, 255, 255, 0.9098039216);
-}
-.premium-form-card__text {
-  position: relative;
-  z-index: 1;
-  margin: 0 0 24px;
-  font-size: 15px;
-  line-height: 1.75;
-  font-family: inter;
-  color: rgba(255, 255, 255, 0.68);
-}
-
-.premium-form {
-  position: relative;
-  z-index: 1;
-}
-.premium-form__group {
-  margin-bottom: 14px;
-}
-.premium-form__input {
-  width: 100%;
-  min-height: 58px;
-  padding: 0 18px;
-  border-radius: 16px;
-  border: 1px solid rgba(255, 255, 255, 0.09);
-  background: rgba(255, 255, 255, 0.04);
-  font-size: 15px;
-  font-family: inter;
-  color: #fff;
-  outline: none;
-  transition: border-color 0.25s ease, background 0.25s ease, box-shadow 0.25s ease;
-}
-.premium-form__input::placeholder {
-  color: rgba(255, 255, 255, 0.42);
-}
-.premium-form__input:focus {
-  border-color: rgba(255, 140, 70, 0.34);
-  background: rgba(255, 255, 255, 0.055);
-  box-shadow: 0 0 0 4px rgba(255, 120, 50, 0.08);
-}
-.premium-form__select {
-  appearance: none;
-  cursor: pointer;
-}
-.premium-form__textarea {
-  min-height: 130px;
-  padding-top: 16px;
-  resize: vertical;
-}
-.premium-form__btn {
-  width: 100%;
-  min-height: 60px;
-  padding: 0 24px;
-  border: none;
-  border-radius: 16px;
-  cursor: pointer;
-  background: linear-gradient(180deg, #ff8a46 0%, #b54608 100%);
-  color: #fff;
-  font-family: inter;
-  font-size: 15px;
-  font-weight: 700;
-  letter-spacing: 0.04em;
-  text-transform: uppercase;
-  box-shadow: 0 18px 32px -14px rgba(255, 120, 50, 0.52), 0 0 26px rgba(255, 120, 50, 0.16);
-  transition: transform 0.3s ease, filter 0.3s ease;
-}
-.premium-form__btn:hover {
-  transform: translateY(-2px);
-  filter: brightness(1.04);
-}
-.premium-form__disclaimer {
-  margin: 14px 0 0;
-  font-size: 13px;
-  line-height: 1.6;
-  font-family: inter;
-  color: rgba(255, 255, 255, 0.46);
-}
-.premium-form__link {
-  color: rgba(255, 255, 255, 0.72);
-  text-decoration: none;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.22);
-  transition: color 0.25s ease, border-color 0.25s ease;
-}
-.premium-form__link:hover {
-  color: #fff;
-  border-color: rgba(255, 255, 255, 0.5);
-}
-
-.form-success,
-.form-error {
-  position: relative;
-  z-index: 1;
-  padding: 20px 18px;
-  margin-bottom: 18px;
-  border-radius: 18px;
-  background: rgba(255, 255, 255, 0.04);
-  border: 1px solid rgba(255, 255, 255, 0.08);
-}
-.form-success h3,
-.form-error h3 {
-  margin: 0 0 8px;
-  font-family: russoone;
-  font-size: 20px;
-  line-height: 1.1;
-  color: rgba(255, 255, 255, 0.9098039216);
-  text-transform: uppercase;
-}
-.form-success p,
-.form-error p {
-  margin: 0;
-  font-family: inter;
-  font-size: 14px;
-  line-height: 1.6;
-  color: rgba(255, 255, 255, 0.7);
-}
-
-.form-btn--secondary {
-  margin-top: 14px;
-  min-height: 48px;
-  padding: 0 18px;
-  border-radius: 14px;
-  border: 1px solid rgba(255, 255, 255, 0.12);
-  background: rgba(255, 255, 255, 0.05);
-  color: #fff;
-  font-family: inter;
-  font-size: 13px;
-  font-weight: 700;
-  text-transform: uppercase;
-  cursor: pointer;
-}
-
-.error-icon {
-  width: 42px;
-  height: 42px;
-  margin-bottom: 12px;
-  border-radius: 50%;
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  background: rgba(255, 120, 50, 0.12);
-  color: #fff;
-  font-size: 20px;
-  font-weight: 700;
-}
-
+/* Contact premium: desktop narrow */
 @media (max-width: 1280px) {
   .contact-premium {
     padding: 100px 0 84px;
@@ -2229,6 +2218,7 @@ body.modal-open {
     position: static;
   }
 }
+/* Contact premium: tablet */
 @media (max-width: 1024px) {
   .contact-premium__info {
     padding: 32px 26px 26px;
@@ -2243,14 +2233,8 @@ body.modal-open {
   .contact-premium__map-frame iframe {
     min-height: 320px;
   }
-  .premium-form-card {
-    padding: 28px 24px 24px;
-    border-radius: 26px;
-  }
-  .premium-form-card__title {
-    font-size: 28px;
-  }
 }
+/* Contact premium: mobile */
 @media (max-width: 768px) {
   .contact-premium {
     padding: 76px 0 58px;
@@ -2303,6 +2287,242 @@ body.modal-open {
   .contact-premium__map-frame iframe {
     min-height: 280px;
   }
+}
+/* Contact premium: small mobile */
+@media (max-width: 480px) {
+  .contact-premium {
+    padding: 60px 0 46px;
+  }
+  .contact-premium__container {
+    padding: 0 12px;
+  }
+  .contact-premium__title {
+    font-size: 34px;
+    letter-spacing: 0;
+  }
+  .contact-premium__subtitle {
+    font-size: 14px;
+    line-height: 1.65;
+  }
+  .contact-premium__info {
+    padding: 20px 14px 14px;
+    border-radius: 18px;
+  }
+  .contact-premium__detail {
+    padding: 16px 14px 14px;
+    border-radius: 16px;
+  }
+  .contact-premium__map-frame {
+    min-height: 240px;
+  }
+  .contact-premium__map-frame iframe {
+    min-height: 240px;
+  }
+}
+/* =========================================================
+   PREMIUM FORM
+   Форма записи на сервис
+   ========================================================= */
+.premium-form-card {
+  position: relative;
+  overflow: hidden;
+  padding: 34px 30px 30px;
+  border-radius: 30px;
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.045), rgba(255, 255, 255, 0.015)), #090909;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  box-shadow: 0 30px 70px rgba(0, 0, 0, 0.34), inset 0 1px 0 rgba(255, 255, 255, 0.04);
+}
+.premium-form-card::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background: linear-gradient(135deg, rgba(255, 132, 58, 0.11) 0%, transparent 40%, transparent 100%);
+}
+.premium-form-card__eyebrow {
+  position: relative;
+  z-index: 1;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 14px;
+  font-size: 11px;
+  line-height: 1;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  font-family: "Inter", sans-serif;
+  font-weight: 700;
+  color: rgba(255, 255, 255, 0.5);
+}
+.premium-form-card__eyebrow::before {
+  content: "";
+  width: 24px;
+  height: 1px;
+  background: rgba(255, 140, 70, 0.84);
+}
+.premium-form-card__title {
+  position: relative;
+  z-index: 1;
+  margin: 0 0 14px;
+  font-size: 34px;
+  line-height: 0.98;
+  text-transform: uppercase;
+  font-family: "RussoOne", sans-serif;
+  color: rgba(255, 255, 255, 0.92);
+}
+.premium-form-card__text {
+  position: relative;
+  z-index: 1;
+  margin: 0 0 24px;
+  font-size: 15px;
+  line-height: 1.75;
+  font-family: "Inter", sans-serif;
+  color: rgba(255, 255, 255, 0.68);
+}
+
+.premium-form {
+  position: relative;
+  z-index: 1;
+}
+.premium-form__group {
+  margin-bottom: 14px;
+}
+.premium-form__input {
+  width: 100%;
+  min-height: 58px;
+  padding: 0 18px;
+  border-radius: 16px;
+  border: 1px solid rgba(255, 255, 255, 0.09);
+  background: rgba(255, 255, 255, 0.04);
+  font-size: 15px;
+  font-family: "Inter", sans-serif;
+  color: #fff;
+  outline: none;
+  transition: border-color 0.25s ease, background 0.25s ease, box-shadow 0.25s ease;
+}
+.premium-form__input::placeholder {
+  color: rgba(255, 255, 255, 0.42);
+}
+.premium-form__input:focus {
+  border-color: rgba(255, 140, 70, 0.34);
+  background: rgba(255, 255, 255, 0.055);
+  box-shadow: 0 0 0 4px rgba(255, 120, 50, 0.08);
+}
+.premium-form__select {
+  appearance: none;
+  cursor: pointer;
+}
+.premium-form__textarea {
+  min-height: 130px;
+  padding-top: 16px;
+  resize: vertical;
+}
+.premium-form__btn {
+  width: 100%;
+  min-height: 60px;
+  padding: 0 24px;
+  border: none;
+  border-radius: 16px;
+  background: linear-gradient(180deg, #ff8a46 0%, #b54608 100%);
+  color: #fff;
+  font-family: "Inter", sans-serif;
+  font-size: 15px;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  box-shadow: 0 18px 32px -14px rgba(255, 120, 50, 0.52), 0 0 26px rgba(255, 120, 50, 0.16);
+  transition: transform 0.3s ease, filter 0.3s ease;
+}
+.premium-form__btn:hover {
+  transform: translateY(-2px);
+  filter: brightness(1.04);
+}
+.premium-form__disclaimer {
+  margin: 14px 0 0;
+  font-size: 13px;
+  line-height: 1.6;
+  font-family: "Inter", sans-serif;
+  color: rgba(255, 255, 255, 0.46);
+}
+.premium-form__link {
+  color: rgba(255, 255, 255, 0.72);
+  text-decoration: none;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.22);
+  transition: color 0.25s ease, border-color 0.25s ease;
+}
+.premium-form__link:hover {
+  color: #fff;
+  border-color: rgba(255, 255, 255, 0.5);
+}
+
+.form-success,
+.form-error {
+  position: relative;
+  z-index: 1;
+  padding: 20px 18px;
+  margin-bottom: 18px;
+  border-radius: 18px;
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+}
+.form-success h3,
+.form-error h3 {
+  margin: 0 0 8px;
+  font-family: "RussoOne", sans-serif;
+  font-size: 20px;
+  line-height: 1.1;
+  color: rgba(255, 255, 255, 0.92);
+  text-transform: uppercase;
+}
+.form-success p,
+.form-error p {
+  margin: 0;
+  font-family: "Inter", sans-serif;
+  font-size: 14px;
+  line-height: 1.6;
+  color: rgba(255, 255, 255, 0.7);
+}
+
+.form-btn--secondary {
+  margin-top: 14px;
+  min-height: 48px;
+  padding: 0 18px;
+  border-radius: 14px;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  background: rgba(255, 255, 255, 0.05);
+  color: #fff;
+  font-family: "Inter", sans-serif;
+  font-size: 13px;
+  font-weight: 700;
+  text-transform: uppercase;
+}
+
+.error-icon {
+  width: 42px;
+  height: 42px;
+  margin-bottom: 12px;
+  border-radius: 50%;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(255, 120, 50, 0.12);
+  color: #fff;
+  font-size: 20px;
+  font-weight: 700;
+}
+
+/* Premium form: tablet */
+@media (max-width: 1024px) {
+  .premium-form-card {
+    padding: 28px 24px 24px;
+    border-radius: 26px;
+  }
+  .premium-form-card__title {
+    font-size: 28px;
+  }
+}
+/* Premium form: mobile */
+@media (max-width: 768px) {
   .premium-form-card {
     padding: 24px 18px 20px;
     border-radius: 22px;
@@ -2347,35 +2567,8 @@ body.modal-open {
     font-size: 13px;
   }
 }
+/* Premium form: small mobile */
 @media (max-width: 480px) {
-  .contact-premium {
-    padding: 60px 0 46px;
-  }
-  .contact-premium__container {
-    padding: 0 12px;
-  }
-  .contact-premium__title {
-    font-size: 34px;
-    letter-spacing: 0;
-  }
-  .contact-premium__subtitle {
-    font-size: 14px;
-    line-height: 1.65;
-  }
-  .contact-premium__info {
-    padding: 20px 14px 14px;
-    border-radius: 18px;
-  }
-  .contact-premium__detail {
-    padding: 16px 14px 14px;
-    border-radius: 16px;
-  }
-  .contact-premium__map-frame {
-    min-height: 240px;
-  }
-  .contact-premium__map-frame iframe {
-    min-height: 240px;
-  }
   .premium-form-card {
     padding: 20px 14px 16px;
     border-radius: 18px;
@@ -2388,6 +2581,10 @@ body.modal-open {
     font-size: 13px;
   }
 }
+/* =========================================================
+   FOOTER
+   Нижняя часть сайта
+   ========================================================= */
 .footer {
   position: relative;
   width: 100%;
@@ -2429,7 +2626,7 @@ body.modal-open {
   align-items: center;
   gap: 10px;
   margin-bottom: 18px;
-  font-family: inter;
+  font-family: "Inter", sans-serif;
   font-size: 11px;
   font-weight: 700;
   line-height: 1;
@@ -2445,17 +2642,17 @@ body.modal-open {
 }
 .footer__logo {
   margin-bottom: 18px;
-  font-family: russoone;
+  font-family: "RussoOne", sans-serif;
   font-size: clamp(38px, 4.5vw, 72px);
   line-height: 0.92;
   letter-spacing: 0.08em;
   text-transform: uppercase;
-  color: rgba(255, 255, 255, 0.9098039216);
+  color: rgba(255, 255, 255, 0.92);
 }
 .footer__description {
   margin: 0;
   max-width: 520px;
-  font-family: inter;
+  font-family: "Inter", sans-serif;
   font-size: 16px;
   line-height: 1.85;
   color: rgba(255, 255, 255, 0.62);
@@ -2472,7 +2669,7 @@ body.modal-open {
 .footer__label {
   display: inline-flex;
   margin-bottom: 14px;
-  font-family: inter;
+  font-family: "Inter", sans-serif;
   font-size: 11px;
   font-weight: 700;
   line-height: 1;
@@ -2483,7 +2680,7 @@ body.modal-open {
 .footer__link, .footer__text, .footer__nav-link {
   display: block;
   margin: 0;
-  font-family: inter;
+  font-family: "Inter", sans-serif;
   font-size: 15px;
   line-height: 1.8;
   color: rgba(255, 255, 255, 0.74);
@@ -2495,7 +2692,7 @@ body.modal-open {
 .footer__phone {
   margin-bottom: 6px;
   font-weight: 600;
-  color: rgba(255, 255, 255, 0.9098039216);
+  color: rgba(255, 255, 255, 0.92);
 }
 .footer__phone:hover {
   color: rgba(255, 255, 255, 0.8);
@@ -2519,7 +2716,7 @@ body.modal-open {
   width: fit-content;
 }
 .footer__nav-link:hover {
-  color: rgba(255, 255, 255, 0.9098039216);
+  color: rgba(255, 255, 255, 0.92);
   transform: translateX(3px);
 }
 .footer__bottom {
@@ -2530,13 +2727,13 @@ body.modal-open {
   padding-top: 20px;
 }
 .footer__copy {
-  font-family: inter;
+  font-family: "Inter", sans-serif;
   font-size: 13px;
   line-height: 1.6;
   color: rgba(255, 255, 255, 0.38);
 }
 .footer__policy {
-  font-family: inter;
+  font-family: "Inter", sans-serif;
   font-size: 13px;
   line-height: 1.6;
   color: rgba(255, 255, 255, 0.58);
@@ -2544,10 +2741,11 @@ body.modal-open {
   border-bottom: 1px solid rgba(255, 255, 255, 0.14);
 }
 .footer__policy:hover {
-  color: rgba(255, 255, 255, 0.9098039216);
+  color: rgba(255, 255, 255, 0.92);
   border-color: rgba(255, 255, 255, 0.34);
 }
 
+/* Footer: tablet */
 @media (max-width: 1200px) {
   .footer {
     padding: 72px 0 26px;
@@ -2565,6 +2763,7 @@ body.modal-open {
     font-size: 52px;
   }
 }
+/* Footer: medium tablet */
 @media (max-width: 1024px) {
   .footer__info {
     grid-template-columns: 1fr;
@@ -2578,6 +2777,7 @@ body.modal-open {
     line-height: 1.7;
   }
 }
+/* Footer: mobile */
 @media (max-width: 768px) {
   .footer {
     padding: 56px 0 22px;
@@ -2613,6 +2813,7 @@ body.modal-open {
     font-size: 12px;
   }
 }
+/* Footer: small mobile */
 @media (max-width: 480px) {
   .footer {
     padding: 46px 0 20px;
@@ -2634,16 +2835,4 @@ body.modal-open {
   .footer__top {
     gap: 22px;
   }
-}
-@font-face {
-  font-family: inter;
-  src: url(../fonts/Inter_18pt-Medium.ttf);
-}
-@font-face {
-  font-family: oswald;
-  src: url(../fonts/Oswald-Medium.ttf);
-}
-@font-face {
-  font-family: russoone;
-  src: url(../fonts/RussoOne-Regular.ttf);
 }
