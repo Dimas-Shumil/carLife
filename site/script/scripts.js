@@ -4,15 +4,26 @@ document.addEventListener('DOMContentLoaded', () => {
   const burger = document.querySelector('.header__burger');
   const nav = document.querySelector('.header__nav');
   const header = document.querySelector('.header');
+  const headerOverlay = document.querySelector('.header__overlay');
+
+  const closeMobileMenu = () => {
+    burger?.classList.remove('active');
+    nav?.classList.remove('active');
+    headerOverlay?.classList.remove('active');
+    burger?.setAttribute('aria-expanded', 'false');
+    document.body.classList.remove('menu-open');
+  };
 
   if (burger && nav) {
     burger.addEventListener('click', () => {
       const isOpen = burger.classList.toggle('active');
       nav.classList.toggle('active', isOpen);
+      headerOverlay?.classList.toggle('active', isOpen);
 
       burger.setAttribute('aria-expanded', String(isOpen));
       document.body.classList.toggle('menu-open', isOpen);
     });
+    headerOverlay?.addEventListener('click', closeMobileMenu);
   }
 
   /* 2. ПОЯВЛЕНИЕ / СКРЫТИЕ ШАПКИ ПРИ СКРОЛЛЕ */
@@ -65,10 +76,7 @@ document.addEventListener('DOMContentLoaded', () => {
       });
 
       if (burger && nav && nav.classList.contains('active')) {
-        burger.classList.remove('active');
-        nav.classList.remove('active');
-        burger.setAttribute('aria-expanded', 'false');
-        document.body.classList.remove('menu-open');
+        closeMobileMenu();
       }
     });
   });
@@ -303,6 +311,7 @@ document.addEventListener('DOMContentLoaded', () => {
       const rawName = (formData.get('name') || '').toString().trim();
       const rawPhone = (formData.get('phone') || '').toString().trim();
       const rawService = (formData.get('service') || '').toString().trim();
+      const rawCar = (formData.get('car') || '').toString().trim();
       const rawMessage = (formData.get('message') || '').toString().trim();
       const website = (formData.get('website') || '').toString().trim();
       const formTime = (formData.get('form_time') || '').toString().trim();
@@ -344,6 +353,7 @@ document.addEventListener('DOMContentLoaded', () => {
         name: rawName,
         phone: formatPhoneForSend(rawPhone),
         service: rawService,
+        car: rawCar,
         message: rawMessage,
         website,
         form_time: formTime,
@@ -488,11 +498,83 @@ document.addEventListener('DOMContentLoaded', () => {
 
     modalClose?.addEventListener('click', closeModal);
     modalOverlay?.addEventListener('click', closeModal);
+    document.getElementById('serviceModalFormLink')?.addEventListener('click', closeModal);
 
     document.addEventListener('keydown', (event) => {
       if (event.key === 'Escape' && modal.classList.contains('active')) {
         closeModal();
       }
     });
+  }
+
+  /* 9. РАБОТЫ НА ГЛАВНОЙ */
+
+  const homeWorks = document.querySelector('[data-home-works]');
+  const homeWorksEmpty = document.querySelector('[data-home-works-empty]');
+
+  function createHomeWorkCard(work) {
+    const article = document.createElement('article');
+    article.className = 'home-work-card';
+    const link = document.createElement('a');
+    link.className = 'home-work-card__link';
+    link.href = `/works/${encodeURIComponent(work.slug)}`;
+    link.setAttribute('aria-label', `Открыть работу ${work.title}`);
+    const media = document.createElement('div');
+    media.className = 'home-work-card__media';
+    const image = document.createElement('img');
+    image.src = work.cover.imagePath;
+    image.alt = work.cover.alt || work.title;
+    image.loading = 'lazy';
+    image.decoding = 'async';
+    media.append(image);
+    const body = document.createElement('div');
+    body.className = 'home-work-card__body';
+    const meta = document.createElement('span');
+    meta.textContent = work.service;
+    const title = document.createElement('h3');
+    title.textContent = work.title;
+    const description = document.createElement('p');
+    description.textContent = work.shortDescription || work.car;
+    body.append(meta, title, description);
+    article.append(link, media, body);
+    return article;
+  }
+
+  if (homeWorks) {
+    fetch('/api/works?limit=6&featured=true', { headers: { Accept: 'application/json' } })
+      .then((response) => {
+        if (!response.ok) throw new Error('Works request failed');
+        return response.json();
+      })
+      .then((payload) => {
+        const works = Array.isArray(payload.items) ? payload.items : [];
+        homeWorks.replaceChildren(...works.map(createHomeWorkCard));
+        if (homeWorksEmpty) homeWorksEmpty.hidden = works.length > 0;
+      })
+      .catch(() => {
+        if (homeWorksEmpty) homeWorksEmpty.hidden = false;
+      });
+  }
+
+  /* 10. БЫСТРЫЕ ДЕЙСТВИЯ */
+
+  const floatingActions = document.querySelector('[data-floating-actions]');
+  const pageFooter = document.querySelector('.footer');
+
+  if (floatingActions && pageFooter) {
+    let floatingTicking = false;
+    const updateFloatingActions = () => {
+      const footerIsNear = pageFooter.getBoundingClientRect().top <= window.innerHeight + 80;
+      floatingActions.classList.toggle('is-visible', window.scrollY > 120 && !footerIsNear);
+      floatingTicking = false;
+    };
+    const requestFloatingUpdate = () => {
+      if (floatingTicking) return;
+      floatingTicking = true;
+      window.requestAnimationFrame(updateFloatingActions);
+    };
+    window.addEventListener('scroll', requestFloatingUpdate, { passive: true });
+    window.addEventListener('resize', requestFloatingUpdate);
+    updateFloatingActions();
   }
 });

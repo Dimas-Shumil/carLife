@@ -11,7 +11,14 @@
   </url>
 
   <url>
-    <loc>https://carlife-abakan.ru/privacy-policy.html</loc>
+    <loc>https://carlife-abakan.ru/works</loc>
+    <lastmod>2026-08-26</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <url>
+    <loc>https://carlife-abakan.ru/privacy-policy</loc>
     <lastmod>2026-05-06</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>

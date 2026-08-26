@@ -26,6 +26,12 @@ Thumbs.db
 # Coverage
 coverage/
 
+# Prisma local database
+prisma/dev.db
+prisma/dev.db-journal
+prisma/*.db
+prisma/*.db-journal
+
 # Build / cache
 dist/
 build/

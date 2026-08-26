@@ -1,0 +1,72 @@
+<!doctype html>
+<html lang="ru">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="Работы автосервиса CarLife в Абакане: диагностика, обслуживание и ремонт автомобилей." />
+    <meta name="robots" content="index,follow,max-image-preview:large" />
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Работы автосервиса CarLife в Абакане" />
+    <meta property="og:description" content="Реальные работы по диагностике, обслуживанию и ремонту автомобилей." />
+    <meta property="og:url" content="https://carlife-abakan.ru/works" />
+    <link rel="canonical" href="https://carlife-abakan.ru/works" />
+    <link rel="icon" type="image/webp" href="/site/img/circle-logo.webp" />
+    <link rel="stylesheet" href="/site/css/main.min.css" />
+    <link rel="stylesheet" href="/site/css/works.min.css" />
+    <title>Работы автосервиса CarLife в Абакане</title>
+  </head>
+  <body>
+    <header class="header">
+      <div class="header__logo"><a href="/" aria-label="CarLife на главную"><img src="/site/img/logo.webp" alt="CarLife" /></a></div>
+      <div class="header__overlay"></div>
+      <button class="header__burger" type="button" aria-label="Открыть меню" aria-expanded="false"><span></span><span></span><span></span></button>
+      <nav class="header__nav" aria-label="Основная навигация">
+        <ul>
+          <li><a href="/#uslugi">УСЛУГИ</a></li>
+          <li><a href="/works" aria-current="page">РАБОТЫ</a></li>
+          <li><a href="/#otzyv">ОТЗЫВЫ</a></li>
+          <li><a href="/#about">О НАС</a></li>
+          <li><a href="/#contacts">КОНТАКТЫ</a></li>
+          <li><a href="/#connect">ЗАПИСАТЬСЯ</a></li>
+          <li><a href="tel:+79233900000">ПОЗВОНИТЬ</a></li>
+        </ul>
+      </nav>
+    </header>
+
+    <main class="works-page">
+      <section class="works-page__hero">
+        <span class="works-page__eyebrow">CARLIFE · АБАКАН</span>
+        <h1>НАШИ<br /><span>РАБОТЫ</span></h1>
+        <p>Показываем реальные задачи: что было с автомобилем, какое решение выбрали и что выполнили.</p>
+      </section>
+      <section class="works-page__catalog" aria-labelledby="works-title">
+        <div class="works-page__head"><div><span>Практика сервиса</span><h2 id="works-title">Выполненные работы</h2></div><p>Диагностика, техническое обслуживание и ремонт</p></div>
+        <div class="works-grid" data-works-list aria-live="polite"></div>
+        <div class="works-state" data-works-loading>Загружаем работы…</div>
+        <div class="works-state" data-works-empty hidden>Опубликованные работы скоро появятся.</div>
+        <div class="works-state works-state--error" data-works-error hidden>Не удалось загрузить работы. Обновите страницу немного позже.</div>
+      </section>
+    </main>
+
+    <nav class="floating-actions" data-floating-actions aria-label="Быстрые действия">
+      <a class="floating-actions__button" href="/#connect" aria-label="Оставить заявку">ЗАПИСЬ</a>
+      <a class="floating-actions__button" href="tel:+79233900000" aria-label="Позвонить">ЗВОНОК</a>
+    </nav>
+
+    <footer class="footer">
+      <div class="footer__container">
+        <div class="footer__top">
+          <div class="footer__brand"><span class="footer__eyebrow">Автосервис в Абакане</span><div class="footer__logo">CAR LIFE</div><p class="footer__description">Диагностика, обслуживание и ремонт автомобилей.</p></div>
+          <div class="footer__info">
+            <div class="footer__column"><span class="footer__label">Контакты</span><a href="tel:+79233900000" class="footer__link footer__phone">+7 (923) 390-00-00</a></div>
+            <div class="footer__column"><span class="footer__label">Адрес</span><p class="footer__text">Абакан, Игарская 7, стр. 1</p><p class="footer__text">Пн–Пт 09:00–18:00<br />Сб 09:00–17:00</p></div>
+            <div class="footer__column"><span class="footer__label">Навигация</span><div class="footer__nav"><a href="/" class="footer__nav-link">Главная</a><a href="/works" class="footer__nav-link">Работы</a><a href="/#connect" class="footer__nav-link">Запись</a></div></div>
+          </div>
+        </div>
+        <div class="footer__bottom"><span class="footer__copy">© 2025–2026 CAR LIFE. Все права защищены.</span><a href="/privacy-policy" class="footer__policy">Политика конфиденциальности</a></div>
+      </div>
+    </footer>
+    <script src="/site/script/scripts.js"></script>
+    <script src="/site/js/works.js"></script>
+  </body>
+</html>

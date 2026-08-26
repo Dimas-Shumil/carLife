@@ -1,7 +1,10 @@
 User-agent: *
-
 Allow: /
+Disallow: /api/
+Disallow: /health
+Disallow: /admin/
+Disallow: /admin-pages/
+Disallow: /*?*
 
 Sitemap: https://carlife-abakan.ru/sitemap.xml
-
-Host: https://carlife-abakan.ru
+Host: carlife-abakan.ru

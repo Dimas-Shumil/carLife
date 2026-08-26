@@ -116,7 +116,7 @@ body {
           }
         }
 
-        &:nth-child(5), &:nth-child(6) a {
+        &:nth-child(6) a {
           padding: 10px 20px;
           color: white;
           background: $color-accent;
@@ -144,7 +144,36 @@ body {
             background: white;
             transform: skew(-15deg) scale(1.05);
           }
+        }
 
+        &:nth-child(7) a {
+          padding: 10px 20px;
+          color: white;
+          background: $color-accent;
+          border-radius: 8px;
+
+          // &::before {
+          //     content: '';
+          //     position: absolute;
+          //     inset: 0;
+          //     background: red;
+          //     transform: skew(-15deg);
+          //     z-index: -1;
+          //     transition: 0.3s;
+          // }
+
+          &::after {
+            display: none;
+          }
+
+          &:hover {
+            color: black;
+          }
+
+          &:hover::before {
+            background: white;
+            transform: skew(-15deg) scale(1.05);
+          }
         }
 
         &:last-child {
