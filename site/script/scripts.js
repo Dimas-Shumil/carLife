@@ -262,6 +262,9 @@ document.addEventListener('DOMContentLoaded', () => {
   const submitBtn = document.getElementById('submitBtn');
   const btnText = submitBtn?.querySelector('.btn-text');
   const formTimeInput = document.getElementById('formTime');
+  const resetFormButton = document.querySelector('[data-reset-form]');
+  const errorTitle = errorMsg?.querySelector('[data-form-error-title]');
+  const errorText = errorMsg?.querySelector('[data-form-error-text]');
 
   function resetForm() {
     if (!form) return;
@@ -270,14 +273,14 @@ document.addEventListener('DOMContentLoaded', () => {
     form.style.display = '';
 
     if (formTimeInput) formTimeInput.value = String(Date.now());
-    if (successMsg) successMsg.style.display = 'none';
-    if (errorMsg) errorMsg.style.display = 'none';
+    if (successMsg) successMsg.hidden = true;
+    if (errorMsg) errorMsg.hidden = true;
 
     if (submitBtn) submitBtn.disabled = false;
     if (btnText) btnText.textContent = 'ЗАПИСАТЬСЯ НА СЕРВИС';
   }
 
-  window.resetForm = resetForm;
+  resetFormButton?.addEventListener('click', resetForm);
 
   if (formTimeInput) {
     formTimeInput.value = String(Date.now());
@@ -286,12 +289,9 @@ document.addEventListener('DOMContentLoaded', () => {
   function showFormError(title, text) {
     if (!errorMsg) return;
 
-    errorMsg.style.display = 'block';
-    errorMsg.innerHTML = `
-    <div class="error-icon">✕</div>
-    <h3>${title}</h3>
-    <p>${text}</p>
-  `;
+    if (errorTitle) errorTitle.textContent = title;
+    if (errorText) errorText.textContent = text;
+    errorMsg.hidden = false;
   }
 
   function resetSubmitButton() {
@@ -303,8 +303,8 @@ document.addEventListener('DOMContentLoaded', () => {
     form.addEventListener('submit', async function (e) {
       e.preventDefault();
 
-      if (errorMsg) errorMsg.style.display = 'none';
-      if (successMsg) successMsg.style.display = 'none';
+      if (errorMsg) errorMsg.hidden = true;
+      if (successMsg) successMsg.hidden = true;
 
       const formData = new FormData(form);
 
@@ -375,8 +375,8 @@ document.addEventListener('DOMContentLoaded', () => {
           throw new Error(result?.message || 'Ошибка отправки заявки.');
         }
 
-        if (successMsg) successMsg.style.display = 'block';
-        if (errorMsg) errorMsg.style.display = 'none';
+        if (successMsg) successMsg.hidden = false;
+        if (errorMsg) errorMsg.hidden = true;
 
         form.reset();
         form.style.display = 'none';
@@ -394,7 +394,7 @@ document.addEventListener('DOMContentLoaded', () => {
           error.message || 'Попробуйте позже или позвоните: +7 (923) 390-00-00',
         );
 
-        if (successMsg) successMsg.style.display = 'none';
+        if (successMsg) successMsg.hidden = true;
         resetSubmitButton();
       }
     });

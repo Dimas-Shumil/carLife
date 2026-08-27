@@ -5,7 +5,7 @@ const path = require('node:path');
 const { spawnSync } = require('node:child_process');
 
 const root = path.join(__dirname, '..');
-const folders = ['config', 'lib', 'middleware', 'routes', 'scripts', 'services', 'site/js'];
+const folders = ['config', 'lib', 'middleware', 'routes', 'scripts', 'services', 'site/js', 'site/script'];
 const files = ['server.js'];
 
 function collectJavaScript(directory) {

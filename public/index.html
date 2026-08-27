@@ -46,7 +46,7 @@
     <link rel="stylesheet" href="site/css/main.min.css" />
     <link
       rel="stylesheet"
-      href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css"
+      href="https://cdn.jsdelivr.net/npm/swiper@11.2.10/swiper-bundle.min.css"
     />
   </head>
 
@@ -89,11 +89,11 @@
         <div class="hero__overlay"></div>
 
         <div class="hero-container">
-          <p class="hero__subtitle">АВТОСЕРВИС В АБАКАНЕ</p>
+          <p class="hero__subtitle">ЗАБОТА О ВАШЕМ АВТО</p>
 
           <h1 class="hero__title">
-            ЗАБОТА О ВАШЕМ АВТО
-            <span>НАШ ПРИОРИТЕТ</span>
+            АВТОСЕРВИС В АБАКАНЕ
+            <span>КАРЛАЙФ</span>
           </h1>
 
           <p class="hero__description">
@@ -724,26 +724,22 @@
                 детали и удобное время записи.
               </p>
 
-              <div
-                class="form-success"
-                id="successMessage"
-                style="display: none"
-              >
+              <div class="form-success" id="successMessage" hidden>
                 <h3>Заявка отправлена!</h3>
                 <p>Мы получили вашу заявку и свяжемся в ближайшее время.</p>
                 <button
                   type="button"
                   class="form-btn form-btn--secondary"
-                  onclick="resetForm()"
+                  data-reset-form
                 >
                   Отправить ещё
                 </button>
               </div>
 
-              <div class="form-error" id="errorMessage" style="display: none">
+              <div class="form-error" id="errorMessage" hidden>
                 <div class="error-icon">✕</div>
-                <h3>Ошибка отправки</h3>
-                <p>Попробуйте позже или позвоните: +7 (923) 390-00-00</p>
+                <h3 data-form-error-title>Ошибка отправки</h3>
+                <p data-form-error-text>Попробуйте позже или позвоните: +7 (923) 390-00-00</p>
               </div>
 
               <form class="premium-form" id="connectForm" novalidate>
@@ -866,8 +862,12 @@
     </main>
 
     <nav class="floating-actions" data-floating-actions aria-label="Быстрые действия">
-      <a class="floating-actions__button" href="#connect" aria-label="Оставить заявку">ЗАПИСЬ</a>
-      <a class="floating-actions__button" href="tel:+79233900000" aria-label="Позвонить">ЗВОНОК</a>
+      <a class="floating-actions__button" href="#connect" aria-label="Оставить заявку">
+        <img src="/site/img/floating/request-icon.svg" alt="" width="30" height="30" />
+      </a>
+      <a class="floating-actions__button" href="tel:+79233900000" aria-label="Позвонить">
+        <img src="/site/img/floating/phone-icon.svg" alt="" width="30" height="30" />
+      </a>
     </nav>
 
     <!-- футер -->
@@ -996,7 +996,7 @@
       </div>
     </div>
 
-    <script type="application/ld+json">
+    <script type="application/ld+json" nonce="{{CSP_NONCE}}">
       {
         "@context": "https://schema.org",
         "@type": "AutoRepair",
@@ -1015,7 +1015,7 @@
         "address": {
           "@type": "PostalAddress",
           "streetAddress": "Игарская 7, стр. 1",
-          "addressLocality": "Абакан",
+          "addressLocality": "Абакан"
           "addressRegion": "Республика Хакасия",
           "postalCode": "655004",
           "addressCountry": "RU"
@@ -1107,7 +1107,7 @@
       }
     </script>
 
-    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
-    <script src="site/script/scripts.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/swiper@11.2.10/swiper-bundle.min.js"></script>
+    <script src="/site/script/scripts.js"></script>
   </body>
 </html>

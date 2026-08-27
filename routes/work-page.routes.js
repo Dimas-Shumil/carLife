@@ -55,7 +55,7 @@ router.get('/:slug', async (req, res, next) => {
   <meta property="og:image" content="${escapeHtml(ogImage)}"><meta name="twitter:card" content="summary_large_image">
   <link rel="canonical" href="${escapeHtml(canonical)}"><link rel="icon" href="/site/img/circle-logo.webp" type="image/webp">
   <link rel="stylesheet" href="/site/css/main.min.css"><link rel="stylesheet" href="/site/css/works.min.css">
-  <title>${escapeHtml(seoTitle)}</title><script type="application/ld+json">${jsonLd}</script>
+  <title>${escapeHtml(seoTitle)}</title><script type="application/ld+json" nonce="${escapeHtml(res.locals.cspNonce)}">${jsonLd}</script>
 </head><body>
   <header class="header"><div class="header__logo"><a href="/" aria-label="CarLife на главную"><img src="/site/img/logo.webp" alt="CarLife"></a></div><div class="header__overlay"></div><button class="header__burger" type="button" aria-label="Открыть меню" aria-expanded="false"><span></span><span></span><span></span></button><nav class="header__nav" aria-label="Основная навигация"><ul><li><a href="/#uslugi">УСЛУГИ</a></li><li><a href="/works">РАБОТЫ</a></li><li><a href="/#otzyv">ОТЗЫВЫ</a></li><li><a href="/#about">О НАС</a></li><li><a href="/#contacts">КОНТАКТЫ</a></li><li><a href="/#connect">ЗАПИСАТЬСЯ</a></li><li><a href="tel:${site.phone}">ПОЗВОНИТЬ</a></li></ul></nav></header>
   <main class="work-page">
@@ -64,7 +64,7 @@ router.get('/:slug', async (req, res, next) => {
     ${renderGallery(gallery, work.title)}
     <section class="work-page__cta"><div><span>Нужен ремонт или диагностика?</span><h2>Запишитесь в CarLife</h2></div><a href="/#connect">Оставить заявку</a></section>
   </main>
-  <nav class="floating-actions" data-floating-actions aria-label="Быстрые действия"><a class="floating-actions__button" href="/#connect" aria-label="Оставить заявку">ЗАПИСЬ</a><a class="floating-actions__button" href="tel:${site.phone}" aria-label="Позвонить">ЗВОНОК</a></nav>
+  <nav class="floating-actions" data-floating-actions aria-label="Быстрые действия"><a class="floating-actions__button" href="/#connect" aria-label="Оставить заявку"><img src="/site/img/floating/request-icon.svg" alt="" width="30" height="30"></a><a class="floating-actions__button" href="tel:${site.phone}" aria-label="Позвонить"><img src="/site/img/floating/phone-icon.svg" alt="" width="30" height="30"></a></nav>
   <footer class="footer"><div class="footer__container"><div class="footer__top"><div class="footer__brand"><span class="footer__eyebrow">Автосервис в Абакане</span><div class="footer__logo">CAR LIFE</div><p class="footer__description">Диагностика, обслуживание и ремонт автомобилей.</p></div><div class="footer__info"><div class="footer__column"><span class="footer__label">Контакты</span><a class="footer__link footer__phone" href="tel:${site.phone}">${site.phoneDisplay}</a></div><div class="footer__column"><span class="footer__label">Адрес</span><p class="footer__text">${escapeHtml(site.address)}</p></div><div class="footer__column"><span class="footer__label">Навигация</span><div class="footer__nav"><a class="footer__nav-link" href="/works">Работы</a><a class="footer__nav-link" href="/#connect">Запись</a></div></div></div></div><div class="footer__bottom"><span class="footer__copy">© 2025–2026 CAR LIFE.</span><a class="footer__policy" href="/privacy-policy">Политика конфиденциальности</a></div></div></footer>
   <script src="/site/script/scripts.js"></script>
 </body></html>`);

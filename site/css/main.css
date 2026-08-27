@@ -362,7 +362,8 @@ html {
   right: 24px;
   bottom: 26px;
   display: flex;
-  gap: 10px;
+  flex-direction: column;
+  gap: 12px;
   opacity: 0;
   visibility: hidden;
   transform: translateY(18px);
@@ -379,20 +380,23 @@ html {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  min-width: 94px;
-  min-height: 50px;
-  padding: 0 18px;
+  width: 60px;
+  height: 60px;
+  padding: 0;
   border: 1px solid rgba(255, 255, 255, 0.1);
   border-radius: 999px;
   color: #fff;
   background: rgba(10, 10, 10, 0.92);
   box-shadow: 0 16px 34px rgba(0, 0, 0, 0.34);
-  font-family: "Inter", sans-serif;
-  font-size: 11px;
-  font-weight: 800;
-  letter-spacing: 0.08em;
   text-decoration: none;
   backdrop-filter: blur(16px);
+}
+.floating-actions__button img {
+  display: block;
+  width: 30px;
+  height: 30px;
+  object-fit: contain;
+  pointer-events: none;
 }
 .floating-actions__button:first-child {
   border-color: rgba(255, 57, 68, 0.4);
@@ -425,10 +429,11 @@ html {
   .floating-actions {
     right: 12px;
     bottom: 14px;
-    left: 12px;
+    left: auto;
   }
   .floating-actions__button {
-    flex: 1;
+    width: 56px;
+    height: 56px;
   }
 }
 ::-webkit-scrollbar {
@@ -2662,7 +2667,7 @@ body.modal-open {
   color: #e50914;
 }
 .footer__telegram:hover {
-  color: rgb(246.2571428571, 32.5428571429, 43.2285714286);
+  color: rgb(96.5714285714%, 12.7619047619%, 16.9523809524%);
   transform: translateX(3px);
 }
 .footer__text + .footer__text {

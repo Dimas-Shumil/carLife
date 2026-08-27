@@ -13,7 +13,11 @@ function sendAdminPage(res, fileName) {
 }
 
 function requireAdminPage(req, res, next) {
-  if (!req.adminAuth) return res.redirect('/admin/login');
+  if (!req.adminAuth) {
+    return res
+      .status(404)
+      .sendFile(path.join(__dirname, '..', 'public', '404.html'));
+  }
   return next();
 }
 
