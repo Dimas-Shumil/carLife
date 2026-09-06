@@ -122,6 +122,7 @@ textarea:focus-visible {
   color: #fff;
   border-color: $yellow;
   background: $yellow;
+  text-align: center;
 }
 
 .admin-primary-button:hover {
@@ -1396,6 +1397,140 @@ input:disabled {
   .admin-tabs {
     display: grid;
     grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 700px) {
+  .admin-page--leads .admin-panel {
+    border: 0;
+    background: transparent;
+    box-shadow: none;
+    overflow: visible;
+  }
+
+  .admin-page--leads .admin-table-wrap {
+    overflow: visible;
+  }
+
+  .admin-table--leads {
+    display: block;
+    min-width: 0;
+
+    thead {
+      position: absolute;
+      width: 1px;
+      height: 1px;
+      overflow: hidden;
+      clip-path: inset(50%);
+      white-space: nowrap;
+    }
+
+    tbody {
+      display: grid;
+      gap: 14px;
+    }
+
+    tbody tr {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) auto;
+      gap: 14px 10px;
+      padding: 18px;
+      border: 1px solid $line;
+      border-radius: 16px;
+      background: #151515;
+    }
+
+    tbody tr:focus-visible {
+      outline: 2px solid #e50914;
+      outline-offset: 3px;
+    }
+
+    td {
+      min-width: 0;
+      padding: 0;
+      border: 0;
+      font-size: 15px;
+      line-height: 1.5;
+      overflow-wrap: anywhere;
+    }
+
+    td:nth-child(1) {
+      grid-column: 1;
+      grid-row: 1;
+      align-self: center;
+      color: $muted;
+      font-size: 12px;
+    }
+
+    td:nth-child(5) {
+      grid-column: 2;
+      grid-row: 1;
+      justify-self: end;
+    }
+
+    td:nth-child(2),
+    td:nth-child(3),
+    td:nth-child(4),
+    td:nth-child(6) {
+      grid-column: 1 / -1;
+    }
+
+    td:nth-child(2) {
+      font-size: 20px;
+      font-weight: 700;
+    }
+
+    td:nth-child(3)::before,
+    td:nth-child(4)::before,
+    td:nth-child(6)::before {
+      display: block;
+      margin-bottom: 3px;
+      color: $muted;
+      font-size: 11px;
+      font-weight: 400;
+    }
+
+    td:nth-child(3)::before { content: 'Телефон'; }
+    td:nth-child(4)::before { content: 'Услуга'; }
+    td:nth-child(6)::before { content: 'Дата обращения'; }
+
+    tbody tr::after {
+      content: 'Открыть заявку';
+      grid-column: 1 / -1;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 44px;
+      margin-top: 2px;
+      border: 1px solid rgba(229, 9, 20, 0.4);
+      border-radius: 10px;
+      background: rgba(229, 9, 20, 0.1);
+      color: #fff;
+      font-size: 14px;
+      font-weight: 700;
+    }
+  }
+
+  .admin-page--leads .admin-search input,
+  .admin-page--leads .admin-modal input,
+  .admin-page--leads .admin-modal select,
+  .admin-page--leads .admin-modal textarea {
+    font-size: 16px;
+  }
+
+  .admin-page--leads .admin-modal__dialog {
+    max-height: calc(100dvh - 16px);
+    overflow-wrap: anywhere;
+  }
+
+  .admin-page--leads .admin-pagination {
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 12px;
+  }
+
+  .admin-page--leads .admin-pagination button {
+    min-height: 44px;
   }
 }
 

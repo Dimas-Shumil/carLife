@@ -1,0 +1,105 @@
+<!doctype html>
+<html lang="ru">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="{{SEO_DESCRIPTION}}" />
+    <meta name="robots" content="index,follow,max-image-preview:large" />
+    <meta property="og:type" content="article" />
+    <meta property="og:title" content="{{SEO_TITLE}}" />
+    <meta property="og:description" content="{{SEO_DESCRIPTION}}" />
+    <meta property="og:url" content="{{CANONICAL}}" />
+    <meta property="og:image" content="{{OG_IMAGE}}" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <link rel="canonical" href="{{CANONICAL}}" />
+    <link rel="icon" href="/site/img/circle-logo.webp" type="image/webp" />
+    <link rel="stylesheet" href="/site/css/main.min.css" />
+    <link rel="stylesheet" href="/site/css/works.min.css" />
+    <title>{{SEO_TITLE}}</title>
+    <script type="application/ld+json" nonce="{{CSP_NONCE}}">{{JSON_LD}}</script>
+  </head>
+  <body>
+    <header class="header">
+      <div class="header__logo">
+        <a href="/" aria-label="CarLife на главную"><img src="/site/img/logo.webp" alt="CarLife" /></a>
+      </div>
+      <div class="header__overlay"></div>
+      <button class="header__burger" type="button" aria-label="Открыть меню" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
+      <nav class="header__nav" aria-label="Основная навигация">
+        <ul>
+          <li><a href="/#uslugi">УСЛУГИ</a></li>
+          <li><a href="/works" aria-current="page">РАБОТЫ</a></li>
+          <li><a href="/#otzyv">ОТЗЫВЫ</a></li>
+          <li><a href="/#about">О НАС</a></li>
+          <li><a href="/#contacts">КОНТАКТЫ</a></li>
+          <li><a href="/#connect">ЗАПИСАТЬСЯ</a></li>
+          <li><a href="tel:{{PHONE}}">ПОЗВОНИТЬ</a></li>
+        </ul>
+      </nav>
+    </header>
+
+    <main class="work-page">
+      <section class="work-page__hero">
+        <div class="work-page__hero-copy">
+          <a class="work-page__back" href="/works">← Все работы</a>
+          <span class="work-page__kicker">{{SERVICE}} · {{LOCATION}}</span>
+          <h1>{{WORK_TITLE}}</h1>
+          <p>{{SHORT_DESCRIPTION}}</p>
+          <div class="work-page__meta">
+            <span>{{CAR}}</span><span>{{DURATION}}</span><span>{{LOCATION}}</span>
+          </div>
+        </div>
+
+        <div class="work-gallery {{GALLERY_MODIFIER}}" data-work-gallery data-gallery-count="{{GALLERY_COUNT}}">
+          <div class="work-gallery__stage" data-gallery-stage>
+            <img class="work-gallery__main-image" src="{{MAIN_IMAGE_SRC}}" alt="{{MAIN_IMAGE_ALT}}" draggable="false" data-gallery-main />
+            <div class="work-gallery__navigation">
+              <button class="work-gallery__arrow work-gallery__arrow--prev" type="button" aria-label="Предыдущее фото" data-gallery-prev><span aria-hidden="true">←</span></button>
+              <button class="work-gallery__arrow work-gallery__arrow--next" type="button" aria-label="Следующее фото" data-gallery-next><span aria-hidden="true">→</span></button>
+            </div>
+            <span class="work-gallery__counter" aria-live="polite"><span data-gallery-current>1</span> / {{GALLERY_COUNT}}</span>
+          </div>
+          <div class="work-gallery__thumbs-shell">
+            <div class="work-gallery__thumbs-viewport" data-gallery-viewport>
+              <div class="work-gallery__thumbs" role="list" aria-label="Превью фотографий">{{GALLERY_THUMBNAILS}}</div>
+            </div>
+          </div>
+        </div>
+
+        <section class="work-page__description">
+          <div class="work-page__section-head"><span>Выполненная работа</span><h2>Что сделали</h2></div>
+          <p>{{DESCRIPTION}}</p>
+        </section>
+      </section>
+
+      <section class="work-page__cta">
+        <div><span>Нужен ремонт или диагностика?</span><h2>Запишитесь в CarLife</h2></div>
+        <a href="/#connect">Оставить заявку</a>
+      </section>
+    </main>
+
+    <nav class="floating-actions" data-floating-actions aria-label="Быстрые действия">
+      <a class="floating-actions__button" href="/#connect" aria-label="Оставить заявку"><img src="/site/img/floating/request-icon.svg" alt="" width="30" height="30" /></a>
+      <a class="floating-actions__button" href="tel:{{PHONE}}" aria-label="Позвонить"><img src="/site/img/floating/phone-icon.svg" alt="" width="30" height="30" /></a>
+    </nav>
+
+    <footer class="footer">
+      <div class="footer__container">
+        <div class="footer__top">
+          <div class="footer__brand"><span class="footer__eyebrow">Автосервис в Абакане</span><div class="footer__logo">CAR LIFE</div><p class="footer__description">Диагностика, обслуживание и ремонт автомобилей.</p></div>
+          <div class="footer__info">
+            <div class="footer__column"><span class="footer__label">Контакты</span><a class="footer__link footer__phone" href="tel:{{PHONE}}">{{PHONE_DISPLAY}}</a></div>
+            <div class="footer__column"><span class="footer__label">Адрес</span><p class="footer__text">{{ADDRESS}}</p></div>
+            <div class="footer__column"><span class="footer__label">Навигация</span><div class="footer__nav"><a class="footer__nav-link" href="/">Главная</a><a class="footer__nav-link" href="/works">Работы</a><a class="footer__nav-link" href="/#connect">Запись</a></div></div>
+          </div>
+        </div>
+        <div class="footer__bottom"><span class="footer__copy">© 2025–2026 CAR LIFE. Все права защищены.</span><a class="footer__policy" href="/privacy-policy">Политика конфиденциальности</a></div>
+      </div>
+    </footer>
+
+    <script src="/site/script/scripts.js"></script>
+    <script src="/site/js/work-gallery.js"></script>
+  </body>
+</html>

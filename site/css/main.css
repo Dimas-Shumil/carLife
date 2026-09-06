@@ -92,22 +92,6 @@ body {
 .header__nav ul li a:hover::after {
   width: 100%;
 }
-.header__nav ul li:nth-child(6) a {
-  padding: 10px 20px;
-  color: white;
-  background: #e50914;
-  border-radius: 8px;
-}
-.header__nav ul li:nth-child(6) a::after {
-  display: none;
-}
-.header__nav ul li:nth-child(6) a:hover {
-  color: black;
-}
-.header__nav ul li:nth-child(6) a:hover::before {
-  background: white;
-  transform: skew(-15deg) scale(1.05);
-}
 .header__nav ul li:nth-child(7) a {
   padding: 10px 20px;
   color: white;
@@ -121,6 +105,22 @@ body {
   color: black;
 }
 .header__nav ul li:nth-child(7) a:hover::before {
+  background: white;
+  transform: skew(-15deg) scale(1.05);
+}
+.header__nav ul li:nth-child(8) a {
+  padding: 10px 20px;
+  color: white;
+  background: #e50914;
+  border-radius: 8px;
+}
+.header__nav ul li:nth-child(8) a::after {
+  display: none;
+}
+.header__nav ul li:nth-child(8) a:hover {
+  color: black;
+}
+.header__nav ul li:nth-child(8) a:hover::before {
   background: white;
   transform: skew(-15deg) scale(1.05);
 }
@@ -796,7 +796,8 @@ select:focus-visible {
   font-family: "RussoOne", sans-serif;
   font-size: clamp(44px, 4.8vw, 82px);
   line-height: 0.94;
-  letter-spacing: -0.03em;
+  font-weight: 100;
+  letter-spacing: -0.001em;
   text-transform: uppercase;
   color: rgba(255, 255, 255, 0.92);
 }
@@ -2667,7 +2668,7 @@ body.modal-open {
   color: #e50914;
 }
 .footer__telegram:hover {
-  color: rgb(96.5714285714%, 12.7619047619%, 16.9523809524%);
+  color: rgb(246.2571428571, 32.5428571429, 43.2285714286);
   transform: translateX(3px);
 }
 .footer__text + .footer__text {
@@ -2732,8 +2733,9 @@ body.modal-open {
 /* Footer: medium tablet */
 @media (max-width: 1024px) {
   .footer__info {
-    grid-template-columns: 1fr;
-    gap: 22px;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    column-gap: 24px;
+    row-gap: 22px;
   }
   .footer__label {
     margin-bottom: 10px;
@@ -2800,5 +2802,9 @@ body.modal-open {
   }
   .footer__top {
     gap: 22px;
+  }
+  .footer__info {
+    column-gap: 16px;
+    row-gap: 22px;
   }
 }

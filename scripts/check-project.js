@@ -24,7 +24,8 @@ for (const file of [...new Set(files)].sort()) {
 }
 
 const required = [
-  'public/index.html', 'public/works.html', 'public/404.html', 'prisma/schema.prisma',
+  'public/index.html', 'public/works.html', 'public/work.html', 'public/404.html',
+  'site/js/work-gallery.js', 'prisma/schema.prisma',
   'admin-pages/login.html', 'admin-pages/dashboard.html', 'admin-pages/leads.html',
   'admin-pages/works.html', 'admin-pages/work-edit.html', '.env.example',
 ];

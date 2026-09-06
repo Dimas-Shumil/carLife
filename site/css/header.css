@@ -91,22 +91,6 @@ body {
 .header__nav ul li a:hover::after {
   width: 100%;
 }
-.header__nav ul li:nth-child(6) a {
-  padding: 10px 20px;
-  color: white;
-  background: #e50914;
-  border-radius: 8px;
-}
-.header__nav ul li:nth-child(6) a::after {
-  display: none;
-}
-.header__nav ul li:nth-child(6) a:hover {
-  color: black;
-}
-.header__nav ul li:nth-child(6) a:hover::before {
-  background: white;
-  transform: skew(-15deg) scale(1.05);
-}
 .header__nav ul li:nth-child(7) a {
   padding: 10px 20px;
   color: white;
@@ -120,6 +104,22 @@ body {
   color: black;
 }
 .header__nav ul li:nth-child(7) a:hover::before {
+  background: white;
+  transform: skew(-15deg) scale(1.05);
+}
+.header__nav ul li:nth-child(8) a {
+  padding: 10px 20px;
+  color: white;
+  background: #e50914;
+  border-radius: 8px;
+}
+.header__nav ul li:nth-child(8) a::after {
+  display: none;
+}
+.header__nav ul li:nth-child(8) a:hover {
+  color: black;
+}
+.header__nav ul li:nth-child(8) a:hover::before {
   background: white;
   transform: skew(-15deg) scale(1.05);
 }
